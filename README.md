@@ -21,6 +21,7 @@ A full-stack social media application inspired by modern platforms, built with t
 
 ---
 ## Architecture Diagram
+![Murmur_Architecture](https://github.com/user-attachments/assets/587d3345-03be-4092-ba13-bb7641074fe7)
 
 
 ---
