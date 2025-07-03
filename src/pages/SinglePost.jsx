@@ -19,7 +19,7 @@ const SinglePost = () => {
             const token = sessionStorage.getItem('token');
             const config = { headers: { 'x-auth-token': token } };
             try {
-                const res = await axios.get(`http://localhost:5000/api/posts/${postId}`, config);
+                const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/posts/${postId}`, config);
                 setPost(res.data);
             } catch (err) {
                 setError('Failed to fetch post.');

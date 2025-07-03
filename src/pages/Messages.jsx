@@ -19,7 +19,7 @@ const Messages = () => {
   const [currentUser, setCurrentUser] = useState(null);
   
   const socket = useRef();
-  const API_URL = 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // Effect for Socket.IO connection and events
   useEffect(() => {

@@ -56,7 +56,7 @@ const Login = () => {
       const body = JSON.stringify(user);
 
       // Send a POST request to the backend login endpoint
-      const res = await axios.post('http://localhost:5000/api/auth/login', body, config);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, body, config);
       
       // On success, store the authentication token in sessionStorage
       sessionStorage.setItem('token', res.data.token);
