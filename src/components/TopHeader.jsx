@@ -100,7 +100,7 @@ const TopHeader = () => {
   const [searchLoading, setSearchLoading] = useState(false);
 
   const ffmpegRef = useRef(new FFmpeg());
-  const API_URL = 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // --- Dropzone & Trimmer Logic ---
   const onPostDrop = useCallback(acceptedFiles => {

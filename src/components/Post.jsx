@@ -47,7 +47,7 @@ const Post = ({ post }) => {
     const config = { headers: { 'x-auth-token': token } };
     const action = isLiked ? 'unlike' : 'like';
     try {
-      const res = await axios.put(`http://localhost:5000/api/posts/${action}/${post._id}`, {}, config);
+      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/posts/${action}/${post._id}`, {}, config);
       setLikes(res.data);
       setIsLiked(!isLiked);
     } catch (err) {
@@ -62,7 +62,7 @@ const Post = ({ post }) => {
     const config = { headers: { 'Content-Type': 'application/json', 'x-auth-token': token } };
     const body = JSON.stringify({ text: newComment });
     try {
-      const res = await axios.post(`http://localhost:5000/api/posts/comment/${post._id}`, body, config);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/posts/comment/${post._id}`, body, config);
       setComments(res.data);
       setNewComment('');
       setShowComments(true);
@@ -75,7 +75,7 @@ const Post = ({ post }) => {
     const token = sessionStorage.getItem('token');
     const config = { headers: { 'x-auth-token': token } };
     try {
-        await axios.delete(`http://localhost:5000/api/posts/${post._id}`, config);
+        await axios.delete(`${import.meta.env.VITE_API_URL}/api/posts/${post._id}`, config);
         window.location.reload();
     } catch (err) {
         console.error("Failed to delete post", err);
@@ -100,7 +100,7 @@ const Post = ({ post }) => {
     const token = sessionStorage.getItem('token');
     const config = { headers: { 'x-auth-token': token } };
     try {
-        const res = await axios.get('http://localhost:5000/api/profile/following', config);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/profile/following`, config);
         setFollowingList(res.data);
     } catch (err) {
         console.error("Failed to fetch following list", err);
@@ -122,7 +122,7 @@ const Post = ({ post }) => {
       const config = { headers: { 'Content-Type': 'application/json', 'x-auth-token': token } };
       const body = { postId: post._id, recipients: selectedRecipients };
       try {
-          await axios.post('http://localhost:5000/api/messages/share', body, config);
+          await axios.post(`${import.meta.env.VITE_API_URL}/api/messages/share`, body, config);
           setIsShareModalOpen(false);
           setSelectedRecipients([]);
           setShareSearch('');

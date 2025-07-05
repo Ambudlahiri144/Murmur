@@ -41,7 +41,7 @@ const Suggestions = () => {
   const [loadingModal, setLoadingModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const API_URL = 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchData = async (limit = 3, forModal = false) => {
       if (forModal) setLoadingModal(true);

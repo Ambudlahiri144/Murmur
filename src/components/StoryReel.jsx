@@ -118,7 +118,7 @@ const StoryReel = () => {
     const [loading, setLoading] = useState(true);
     const [selectedUserStories, setSelectedUserStories] = useState(null);
     const [isViewerOpen, setIsViewerOpen] = useState(false);
-    const API_URL = 'http://localhost:5000';
+    const API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         const fetchStoryFeed = async () => {
