@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL;
 
 /**
  * Creates a proxied URL to safely fetch media from Cloudinary

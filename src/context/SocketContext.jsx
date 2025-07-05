@@ -21,7 +21,7 @@ export const SocketContextProvider = ({ children }) => {
             const userId = JSON.parse(atob(token.split('.')[1])).user.id;
             setCurrentUserId(userId);
 
-			const newSocket = io("http://localhost:5000", {
+			const newSocket = io(`${import.meta.env.VITE_API_URL}`, {
 				query: {
 					userId: userId,
 				},
@@ -41,7 +41,7 @@ export const SocketContextProvider = ({ children }) => {
             const fetchNotifications = async () => {
                 try {
                     const config = { headers: { 'x-auth-token': token } };
-                    const res = await axios.get('http://localhost:5000/api/notifications', config);
+                    const res = await axios.get(`${import.meta.env.VITE_API_URL}`, config);
                     setNotifications(res.data);
                 } catch (error) {
                     console.error("Failed to fetch notifications", error);
