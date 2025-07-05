@@ -14,6 +14,8 @@ export const SocketContextProvider = ({ children }) => {
 	const [onlineUsers, setOnlineUsers] = useState([]);
 	const [notifications, setNotifications] = useState([]);
     const [currentUserId, setCurrentUserId] = useState(null);
+    const API_URL = import.meta.env.VITE_API_URL;
+
 
 	useEffect(() => {
         const token = sessionStorage.getItem("token");
@@ -21,7 +23,7 @@ export const SocketContextProvider = ({ children }) => {
             const userId = JSON.parse(atob(token.split('.')[1])).user.id;
             setCurrentUserId(userId);
 
-			const newSocket = io(`${import.meta.env.VITE_API_URL}`, {
+			const newSocket = io(API_URL, {
 				query: {
 					userId: userId,
 				},
@@ -41,7 +43,7 @@ export const SocketContextProvider = ({ children }) => {
             const fetchNotifications = async () => {
                 try {
                     const config = { headers: { 'x-auth-token': token } };
-                    const res = await axios.get(`${import.meta.env.VITE_API_URL}`, config);
+                    const res = await axios.get(`${API_URL}/api/notifications`, config);
                     setNotifications(res.data);
                 } catch (error) {
                     console.error("Failed to fetch notifications", error);
@@ -56,7 +58,7 @@ export const SocketContextProvider = ({ children }) => {
                 setSocket(null);
             }
         }
-	}, [currentUserId]);
+	}, [currentUserId, API_URL]);
 
 	return (
         <SocketContext.Provider value={{ socket, onlineUsers, notifications, setNotifications }}>
